@@ -15,7 +15,14 @@ export function Footer() {
   const borderColor = useColorModeValue('gray.200', 'gray.700')
   const color = useColorModeValue('brand.900', 'brand.100')
   return (
-    <Flex width="100%" maxW="760px" mx="auto" px={[2, 4, 10]}>
+    <Flex
+      pos="sticky"
+      bottom="0"
+      wrap="wrap"
+      width="100%"
+      maxW="760px"
+      mx="auto"
+      px={[2, 4, 10]}>
       <Box
         borderColor={borderColor}
         borderWidth="1px 1px 0 1px"

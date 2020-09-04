@@ -29,6 +29,18 @@ const theme = extendTheme({
     body: "'Open Sans', sans-serif",
     heading: "'Merriweather', serif",
   },
+  styles: {
+    global: {
+      'html, body': {
+        fontSize: '3xl',
+        color: 'gray.600',
+        lineHeight: 'tall',
+      },
+      'a': {
+        color: 'brand.500',
+      },
+    },
+  },
 })
 
 export default theme
