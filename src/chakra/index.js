@@ -32,9 +32,10 @@ const theme = extendTheme({
   styles: {
     global: {
       'html, body': {
-        fontSize: '3xl',
+        fontSize: '2xl',
         color: 'gray.600',
         lineHeight: 'tall',
+        backgroundColor: 'gray.100',
       },
       'a': {
         color: 'brand.500',

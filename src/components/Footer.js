@@ -1,45 +1,19 @@
 import React from 'react'
-import {
-  Box,
-  Link,
-  Flex,
-  Image,
-  Stack,
-  useColorModeValue,
-} from '@chakra-ui/core'
+import { Box, Link, Flex, Image, Stack } from '@chakra-ui/core'
 import { Trans } from '../locale/Trans'
 import cn from '../assets/images/cn.svg'
 import sts from '../assets/images/logo.png'
 export function Footer() {
-  const bgColor = useColorModeValue('white', 'gray.900')
-  const borderColor = useColorModeValue('gray.200', 'gray.700')
-  const color = useColorModeValue('brand.900', 'brand.100')
   return (
-    <Flex
-      pos="sticky"
-      bottom="0"
-      wrap="wrap"
-      width="100%"
-      maxW="760px"
-      mx="auto"
-      px={[2, 4, 10]}>
+    <Flex wrap="wrap" width="1400px" height="100px" mx="auto">
       <Box
-        borderColor={borderColor}
+        borderColor="gray.200"
         borderWidth="1px 1px 0 1px"
-        p="6"
-        borderTopRadius="md"
+        borderTopRadius="lg"
         textAlign="center"
-        bg={bgColor}
-        color={color}
+        bg="white"
+        color="brand.900"
         w="100%">
-        <Trans id="footer" />{' '}
-        <Link isExternal href="https://citizennext.ro" color="brand.500">
-          Citizen Next
-        </Link>{' '}
-        <Trans id="and" />{' '}
-        <Link isExternal href="https://sts.ro" color="brand.500">
-          <Trans id="sts" />
-        </Link>
         <Stack
           direction="row"
           alignItems="center"
@@ -47,8 +21,8 @@ export function Footer() {
           mt="2">
           <Link isExternal href="https://citizennext.ro">
             <Image
-              width="40px"
-              height="40px"
+              width="80px"
+              height="80px"
               objectFit="cover"
               src={cn}
               alt="Citizen Next"
@@ -57,8 +31,8 @@ export function Footer() {
           </Link>
           <Link isExternal href="https://sts.ro">
             <Image
-              width="30px"
-              height="30px"
+              width="60px"
+              height="60px"
               objectFit="center"
               src={sts}
               alt={<Trans id="sts" />}

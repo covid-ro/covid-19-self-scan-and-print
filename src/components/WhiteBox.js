@@ -10,7 +10,7 @@ export function WhiteBox({ children, onClick, ...rest }) {
       onClick={onClick}
       borderColor={borderColor}
       borderWidth="1px"
-      borderRadius="md"
+      borderRadius="lg"
       bg={bgColor}
       my="4"
       w="100%">

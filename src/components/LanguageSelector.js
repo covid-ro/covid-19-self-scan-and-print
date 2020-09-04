@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Flex, Box, Link, useColorModeValue } from '@chakra-ui/core'
-import { Trans } from '../locale/Trans'
+import { Grid, Box, Image, Center } from '@chakra-ui/core'
 import { LanguageContext } from '../locale/LanguageContext'
-import { Button } from '@chakra-ui/core'
+import romanian from '../assets/images/romania-flag-medium.png'
+import english from '../assets/images/united-kingdom-flag-medium.png'
 export function LanguageSelector() {
   let history = useHistory()
   const languageContext = useContext(LanguageContext)
@@ -12,50 +12,17 @@ export function LanguageSelector() {
     languageContext.setLanguage(lang)
     history.push('/start')
   }
-  const color = useColorModeValue('#2653B0', '#fff')
 
   return (
-    <Flex flexDirection="column" alignItems="center">
-      <Box w="100%" justifyContent="center" mt="8" mb="6" d="flex">
-        <Link
-          fontWeight="semibold"
-          color={languageContext.language === 'ro' ? color : 'gray.700'}
-          onClick={() => languageContext.setLanguage('ro')}>
-          RO
-        </Link>{' '}
-        |{' '}
-        <Link
-          fontWeight="semibold"
-          color={languageContext.language === 'en' ? color : 'gray.700'}
-          onClick={() => languageContext.setLanguage('en')}>
-          EN
-        </Link>
-      </Box>
-      <Trans id="langSelect" />
-      <Box
-        mt="4"
-        mb="16"
-        d="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center">
-        <Button
-          colorScheme="brand"
-          size="lg"
-          mt="8"
-          w="300px"
-          onClick={(e) => forwardAction(e, 'ro')}>
-          <Trans id="ro" />
-        </Button>
-        <Button
-          colorScheme="brand"
-          size="lg"
-          mt="8"
-          w="300px"
-          onClick={(e) => forwardAction(e, 'en')}>
-          <Trans id="en" />
-        </Button>
-      </Box>
-    </Flex>
+    <Center width="full" height="full">
+      <Grid templateColumns="repeat(2, 300px)" templateRows="170px" gap="10">
+        <Box boxSize="sm" onClick={(e) => forwardAction(e, 'ro')}>
+          <Image src={romanian} alt="" width="300px" height="170px" />
+        </Box>
+        <Box boxSize="sm" onClick={(e) => forwardAction(e, 'en')}>
+          <Image src={english} alt="" width="300px" height="170px" />
+        </Box>
+      </Grid>
+    </Center>
   )
 }

@@ -9,7 +9,12 @@ function Home() {
   return (
     <Layout title="Acasă">
       <WhiteBox p={[2, 8, 8, 8]}>
-        <Heading size="md" as="h1" lineHeight="32px" fontWeight="normal">
+        <Heading
+          size="md"
+          as="h1"
+          lineHeight="32px"
+          fontWeight="normal"
+          textAlign="center">
           <Trans id="infoLabelBegin" />
         </Heading>
         <LanguageSelector />
