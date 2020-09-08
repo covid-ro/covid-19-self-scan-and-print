@@ -106,7 +106,7 @@ const ro = {
   city: 'Localitate',
   codeError: 'Codul trebuie să contină 6 cifre.',
   completeDeclaration: 'Completează declarația',
-  infoLabelBegin: 'Aici poți sa printezi declarația de intrare în țară',
+  infoLabelBegin: 'Aici poți imprima declarația de intrare în țară',
   infoLabelBold:
     ' Vă rugăm să completați formularul din această aplicație cu date reale, ',
   infoLabelEnd:

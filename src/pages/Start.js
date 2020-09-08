@@ -1,6 +1,15 @@
 import React, { useContext, useState } from 'react'
-// import { Link, Redirect } from 'react-router-dom'
-import { Heading, Box, Input, useToast } from '@chakra-ui/core'
+import { useHistory } from 'react-router-dom'
+
+import {
+  Heading,
+  Box,
+  Input,
+  useToast,
+  Center,
+  Spinner,
+  Divider,
+} from '@chakra-ui/core'
 
 import { LanguageContext } from '../locale/LanguageContext'
 import { Trans } from '../locale/Trans'
@@ -12,9 +21,11 @@ const api = process.env.REACT_APP_API
 
 function Start() {
   const toast = useToast()
+  const history = useHistory()
+  const [qrCode, setQrCode] = useState('')
   const [disabled, setDisabled] = useState(false)
   const languageContext = useContext(LanguageContext)
-  async function download(code) {
+  async function preview(code) {
     let doc = new Document()
     const { declaration } = await getDeclaratie(code)
     if (declaration) {
@@ -50,16 +61,15 @@ function Start() {
         phoneNumber: declaration.phone,
         documentDate: documentDate,
       }
-      return doc.download(data)
+      return doc.preview(data)
     }
   }
-  const token = localStorage.getItem('token')
   async function getDeclaratie(code) {
+    const declarationCode = code.split(' ')[0]
     setDisabled(true)
     try {
-      const request = await fetch(`${api}/declaration-web/${code}`, {
+      const request = await fetch(`${api}/declaration/${declarationCode}`, {
         headers: {
-          'Authorization': `Bearer ${token}`,
           'X-API-KEY': process.env.REACT_APP_API_KEY,
           'Content-Type': 'application/json',
         },
@@ -102,23 +112,55 @@ function Start() {
   return (
     <Layout title="Codurile dumneavoastră">
       <WhiteBox p="8">
-        <Heading
-          size="md"
-          lineHeight="32px"
-          fontWeight="regular"
-          textAlign="center">
-          <Trans id="start" />
-        </Heading>
-        <Box
-          mt="4"
-          mb="16"
-          d="flex"
-          w="full"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center">
-          <Input variant="flushed" width="600px" autoFocus={true} />
-        </Box>
+        <Center width="100%" height="100%" flexDirection="column">
+          <Heading
+            size="lg"
+            as="h1"
+            lineHeight="60px"
+            fontWeight="black"
+            textAlign="center">
+            <Trans id="start" />
+          </Heading>
+          <Box
+            mt="4"
+            mb="16"
+            d="flex"
+            w="full"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault()
+                preview(qrCode)
+                setTimeout(() => {
+                  history.push('/')
+                }, 2000)
+              }}>
+              <Input
+                variant="flushed"
+                textAlign="center"
+                width="600px"
+                autoFocus={true}
+                value={qrCode}
+                onChange={(e) => setQrCode(e.target.value)}
+                disabled={disabled}
+              />
+              <Divider color="transparent" />
+              {disabled && (
+                <Center width="full" height="60px">
+                  <Spinner
+                    thickness="2px"
+                    speed="0.65s"
+                    emptyColor="gray.200"
+                    color="brand.500"
+                    size="md"
+                  />
+                </Center>
+              )}
+            </form>
+          </Box>
+        </Center>
       </WhiteBox>
     </Layout>
   )

@@ -4,8 +4,6 @@ import { Route, Switch } from 'react-router-dom'
 import { Spinner, Center } from '@chakra-ui/core'
 const Home = lazy(() => import('./pages/Home'))
 const Start = lazy(() => import('./pages/Start'))
-const Success = lazy(() => import('./pages/Success'))
-const End = lazy(() => import('./pages/End'))
 const NoMatch = lazy(() => import('./pages/NoMatch'))
 
 function App() {
@@ -28,12 +26,6 @@ function App() {
         </Route>
         <Route path="/start">
           <Start />
-        </Route>
-        <Route path="/succes">
-          <Success />
-        </Route>
-        <Route path="/multumim">
-          <End />
         </Route>
         <Route path="*">
           <NoMatch />
