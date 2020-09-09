@@ -36,28 +36,43 @@ Document.prototype.create = function (data, /*signature,*/ qrcode, output) {
   return this.doc.output(output, this.getName(data))
 }
 
-Document.prototype.download = function (data, /*signature,*/ qrcode, output) {
-  this.create(data, /*signature,*/ qrcode, 'save')
-}
-
 Document.prototype.preview = function (data, /*signature,*/ qrcode) {
   // Method 1
   let content = this.create(data, /*signature,*/ qrcode, 'blob')
   let file = new Blob([content], { type: 'application/pdf' })
   let fileURL = URL.createObjectURL(file)
-  var win = window.open()
-  win.document.write(
-    '<iframe src="' +
-      fileURL +
-      '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>'
-  )
+  const winHtml = `<!DOCTYPE html>
+    <html>
+      <head>
+        <title>Window with Blob</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <style>
+          body { min-height: 100vh; scroll-behavior: smooth; text-rendering: optimizeSpeed; margin: 0;}
+          embed {min-height: 90vh;}
+          div {width:100%;}
+          button {
+            background: #2653B0;
+            color: #fff;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 10px 20px;
+            border: solid 1px #2653B0;
+            margin: 20px calc(50% - 100px);
+            width: 200px;
+          }
+        </style>
+      </head>
+      <body>
+          <embed src="${fileURL}" type="application/pdf" width="100%" height="100%">
+          <div><button onclick="window.print()">imprimare</button></div>
+      </body>
+    </html>`
 
-  // Method 3
-  // const el = document.createElement('a');
-  // el.href = this.create(data, signature, qrcode);
-  // el.target = '_blank';
-  // el.download = this.getName(data);
-  // el.click();
+  const winUrl = URL.createObjectURL(new Blob([winHtml], { type: 'text/html' }))
+
+  window.open(winUrl, 'win', `width=1200,height=880,screenX=200,screenY=100`)
 }
 
 Document.prototype.getName = function (data) {
