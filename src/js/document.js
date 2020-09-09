@@ -48,31 +48,40 @@ Document.prototype.preview = function (data, /*signature,*/ qrcode) {
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <style>
           body { min-height: 100vh; scroll-behavior: smooth; text-rendering: optimizeSpeed; margin: 0;}
-          embed {min-height: 90vh;}
+          embed {min-height: 80vh;}
           div {width:100%;}
           button {
             background: #2653B0;
             color: #fff;
-            font-size: 1rem;
+            font-size: 1.5rem;
             letter-spacing: 1px;
             font-weight: bold;
             text-transform: uppercase;
-            padding: 10px 20px;
-            border: solid 1px #2653B0;
-            margin: 20px calc(50% - 100px);
-            width: 200px;
+            border-radius: .5em;
+            padding: 1em 2em;
+            border: solid 2px #2653B0;
+            margin: 2em calc(50% - 125px);
+            width: 250px;
           }
         </style>
       </head>
       <body>
           <embed src="${fileURL}" type="application/pdf" width="100%" height="100%">
-          <div><button onclick="window.print()">imprimare</button></div>
+          <div><button onclick="printPage()">imprimare</button></div>
       </body>
+      <script>
+          function printPage(){
+            window.print()
+            setTimeout(() => {
+              window.close()
+            }, 3000)
+          }
+      </script>
     </html>`
 
   const winUrl = URL.createObjectURL(new Blob([winHtml], { type: 'text/html' }))
 
-  window.open(winUrl, 'win', `width=1200,height=880,screenX=200,screenY=100`)
+  window.open(winUrl, 'win', `width=1200,height=980,screenX=200,screenY=50`)
 }
 
 Document.prototype.getName = function (data) {
