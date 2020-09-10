@@ -44,7 +44,7 @@ Document.prototype.preview = function (data, /*signature,*/ qrcode) {
   const winHtml = `<!DOCTYPE html>
     <html>
       <head>
-        <title>Window with Blob</title>
+        <title>Imprimare / Print</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <style>
           body { min-height: 100vh; scroll-behavior: smooth; text-rendering: optimizeSpeed; margin: 0;}
