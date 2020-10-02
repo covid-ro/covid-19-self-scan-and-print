@@ -55,9 +55,11 @@ Document.prototype.preview = function (data, /*signature,*/ qrcode) {
           }
         </script>
         <style>
-          body { min-height: 100vh; scroll-behavior: smooth; text-rendering: optimizeSpeed; margin: 0;}
+          body {min-height: 100vh; scroll-behavior: smooth; text-rendering: optimizeSpeed; margin: 0;}
+          .wrapper {position: relative; width: 100%; height: 80vh;}
           iframe {min-height: 80vh;}
-          div {width:100%;}
+          .button {width:100%;}
+          .cover {width:100%;height:80vh;position:absolute;top:0;left:0;z-index:9999;cursor:not-allowed;}
           button {
             background: #2653B0;
             color: #fff;
@@ -74,8 +76,11 @@ Document.prototype.preview = function (data, /*signature,*/ qrcode) {
         </style>
       </head>
       <body>
-          <iframe name="statement" src="${fileURL}" type="application/pdf" width="100%" height="100%"></iframe>
-          <div><button onclick="printStatement()">imprimare</button></div>
+          <div class="wrapper">
+            <div class="cover"></div>
+            <iframe name="statement" src="${fileURL}" type="application/pdf" width="100%" height="100%"></iframe>
+            <div class="button"><button onclick="printStatement()">imprimare</button></div>
+          </div>
       </body>
     </html>`
 

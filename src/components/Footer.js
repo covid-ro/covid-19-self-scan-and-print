@@ -1,7 +1,7 @@
 import React from 'react'
-import { Box, Link, Flex, Image, Stack } from '@chakra-ui/core'
+import { Box, Flex, Image, Stack, Text } from '@chakra-ui/core'
 import { Trans } from '../locale/Trans'
-import cn from '../assets/images/cn.svg'
+import cn from '../assets/images/cn-full.svg'
 import sts from '../assets/images/logo.png'
 export function Footer() {
   return (
@@ -19,26 +19,24 @@ export function Footer() {
           alignItems="center"
           justifyContent="center"
           mt="2">
-          <Link isExternal href="https://citizennext.ro">
-            <Image
-              width="80px"
-              height="80px"
-              objectFit="cover"
-              src={cn}
-              alt="Citizen Next"
-              mx="4"
-            />
-          </Link>
-          <Link isExternal href="https://sts.ro">
-            <Image
-              width="60px"
-              height="60px"
-              objectFit="center"
-              src={sts}
-              alt={<Trans id="sts" />}
-              mx="4"
-            />
-          </Link>
+          <Image
+            height="80px"
+            objectFit="cover"
+            src={cn}
+            alt="Citizen Next"
+            mx="4"
+          />
+          <Image
+            width="60px"
+            height="60px"
+            objectFit="center"
+            src={sts}
+            alt={<Trans id="sts" />}
+            mx="4"
+          />
+          <Text fontSize="30px" color="black">
+            Serviciul de Telecomunicații Speciale
+          </Text>
         </Stack>
       </Box>
     </Flex>
