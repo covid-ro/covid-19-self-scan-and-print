@@ -45,7 +45,7 @@ const en = {
   close: 'Close',
   download: 'Print statement',
   downloading: 'Downloading',
-
+  print: 'Print',
   printNotice:
     'Show the QR code(s) at the DSP border control upon entering the country. To facilitate a faster check we recommend downloading and printing the statement(s) before departing for Romania.',
   homeAddress: 'Home address (according to your national id)',

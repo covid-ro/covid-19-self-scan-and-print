@@ -22,7 +22,7 @@ Document.prototype.reset = function () {
   this.doc.setTextColor(0, 0, 0)
 }
 
-Document.prototype.create = function (data, /*signature,*/ qrcode, output) {
+Document.prototype.create = function (data, translations, qrcode, output) {
   this.__.setLocale(data.locale)
 
   this.draw()
@@ -36,15 +36,15 @@ Document.prototype.create = function (data, /*signature,*/ qrcode, output) {
   return this.doc.output(output, this.getName(data))
 }
 
-Document.prototype.preview = function (data, /*signature,*/ qrcode) {
+Document.prototype.preview = function (data, translations, qrcode) {
   // Method 1
-  let content = this.create(data, /*signature,*/ qrcode, 'blob')
+  let content = this.create(data, translations, qrcode, 'blob')
   let file = new Blob([content], { type: 'application/pdf' })
   let fileURL = URL.createObjectURL(file)
   const winHtml = `<!DOCTYPE html>
     <html>
       <head>
-        <title>Imprimare / Print</title>
+        <title>${translations}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <script>
           function printStatement(){
@@ -79,7 +79,7 @@ Document.prototype.preview = function (data, /*signature,*/ qrcode) {
           <div class="wrapper">
             <div class="cover"></div>
             <iframe name="statement" src="${fileURL}" type="application/pdf" width="100%" height="100%"></iframe>
-            <div class="button"><button onclick="printStatement()">imprimare</button></div>
+            <div class="button"><button onclick="printStatement()">${translations}</button></div>
           </div>
       </body>
     </html>`

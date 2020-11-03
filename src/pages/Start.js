@@ -61,7 +61,7 @@ function Start() {
         phoneNumber: declaration.phone,
         documentDate: documentDate,
       }
-      return doc.preview(data)
+      return doc.preview(data, languageContext.dictionary['print'])
     }
   }
   async function getDeclaratie(code) {
