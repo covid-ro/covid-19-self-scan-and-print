@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useRef, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import {
@@ -25,6 +25,30 @@ function Start() {
   const [qrCode, setQrCode] = useState('')
   const [disabled, setDisabled] = useState(false)
   const languageContext = useContext(LanguageContext)
+  const useFocus = () => {
+    const htmlElRef = useRef(null)
+    const setFocus = () => {
+      htmlElRef.current && htmlElRef.current.focus()
+    }
+
+    return [htmlElRef, setFocus]
+  }
+  const [inputRef, setInputFocus] = useFocus()
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClick) // return function to be called when unmounted
+    return () => {
+      document.removeEventListener('mousedown', handleClick)
+    }
+  })
+  const handleClick = (e) => {
+    if (inputRef.current.contains(e.target)) {
+      // inside click
+      return
+    } // outside click
+    setTimeout(() => {
+      setInputFocus()
+    }, 100)
+  }
   async function preview(code) {
     let doc = new Document()
     const { declaration } = await getDeclaratie(code)
@@ -145,6 +169,7 @@ function Start() {
                 value={qrCode}
                 onChange={(e) => setQrCode(e.target.value)}
                 disabled={disabled}
+                ref={inputRef}
               />
               <Divider color="transparent" />
               {disabled && (
