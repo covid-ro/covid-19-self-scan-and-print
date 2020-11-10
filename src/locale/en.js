@@ -1,4 +1,5 @@
 const en = {
+  footer: 'Platform managed by Special Telecommunication Service, developed by Citizen Next with support from Unicredit',
   title: 'Online Coronavirus COVID-19 Statement',
   ro: 'Romanian',
   en: 'English',
@@ -186,7 +187,6 @@ const en = {
   codes: 'Your codes',
   otherInfo: 'Travel advice',
   noCodesYet: 'At the moment you have not filled in any statements',
-  footer: 'Developed by',
   sts: 'Special Telecomunications Service',
   deleteStatements: 'Delete statements',
   statementsDeleted: 'Your statements have been deleted.',

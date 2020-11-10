@@ -1,14 +1,9 @@
-import React, { useContext } from 'react'
-import { Heading, Flex, Image, Text } from '@chakra-ui/core'
+import React from 'react'
+import { Heading, Flex, Image } from '@chakra-ui/core'
 import { Link } from 'react-router-dom'
 import logo from '../assets/images/logo.png'
 import { Trans } from '../locale/Trans'
-import { LanguageContext } from '../locale/LanguageContext'
-const MenuItems = ({ children }) => (
-  <Text mt={{ base: 4, lg: 0 }} mr={6} fontWeight="semibold" display="block">
-    {children}
-  </Text>
-)
+
 export function Header(props) {
   // const languageContext = useContext(LanguageContext)
   const bgColor = 'white'

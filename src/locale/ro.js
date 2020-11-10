@@ -1,4 +1,5 @@
 const ro = {
+  footer: 'Platformă gestionată de Serviciul de Telecomunicații Speciale, dezvoltată de Citizen Next cu sprijin din partea Unicredit',
   title: 'Declarație Online Coronavirus COVID-19',
   ro: 'Română',
   en: 'English',
@@ -186,7 +187,6 @@ const ro = {
   codes: 'Vezi codurile tale',
   otherInfo: 'Sfaturi calatorie',
   noCodesYet: 'Momentan nu aveți nici o declarație completată',
-  footer: 'Dezvoltat de',
   sts: 'Serviciul de Telecomunicatii Speciale',
   deleteStatements: 'Ștergeți declarațiile',
   statementsDeleted: 'Declarațiile dumneavoastră au fost șterse.',
