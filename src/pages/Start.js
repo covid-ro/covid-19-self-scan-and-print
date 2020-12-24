@@ -1,15 +1,7 @@
 import React, { useContext, useState, useRef, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 
-import {
-  Heading,
-  Box,
-  Input,
-  useToast,
-  Center,
-  Spinner,
-  Divider,
-} from '@chakra-ui/core'
+import { Heading, Box, Input, useToast, Center, Spinner, Divider } from '@chakra-ui/core'
 
 import { LanguageContext } from '../locale/LanguageContext'
 import { Trans } from '../locale/Trans'
@@ -54,9 +46,7 @@ function Start() {
     const { declaration } = await getDeclaratie(code)
     if (declaration) {
       const documentDate = new Date(
-        declaration.created_at
-          .toString()
-          .substring(0, declaration.created_at.length - 5)
+        declaration.created_at.toString().substring(0, declaration.created_at.length - 5)
       ).toLocaleDateString('ro-RO')
       const data = {
         locale: languageContext.language,
@@ -74,13 +64,9 @@ function Start() {
           month: declaration.birth_date.split('-')[1],
           day: declaration.birth_date.split('-')[2],
         },
-        countryDeparture: countriesList.find(
-          (country) =>
-            country.value === declaration.travelling_from_country_code
-        ).label,
+        countryDeparture: countriesList.find((country) => country.value === declaration.travelling_from_country_code).label,
         destinationAddress: declaration.home_isolated
-          ? declaration.home_address ||
-            languageContext.dictionary['homeAddress']
+          ? declaration.home_address || languageContext.dictionary['homeAddress']
           : `${declaration.isolation_addresses[0].street}, ${declaration.isolation_addresses[0].number},  ${declaration.isolation_addresses[0].bloc},  ${declaration.isolation_addresses[0].entry},  ${declaration.isolation_addresses[0].apartment},  ${declaration.isolation_addresses[0].city},  ${declaration.isolation_addresses[0].county}, `,
         phoneNumber: declaration.phone,
         documentDate: documentDate,
@@ -89,10 +75,9 @@ function Start() {
     }
   }
   async function getDeclaratie(code) {
-    const declarationCode = code.split(' ')[0]
     setDisabled(true)
     try {
-      const request = await fetch(`${api}/declaration/${declarationCode}`, {
+      const request = await fetch(`${api}/declaration-self-print/${code}`, {
         headers: {
           'X-API-KEY': process.env.REACT_APP_API_KEY,
           'Content-Type': 'application/json',
@@ -134,25 +119,13 @@ function Start() {
   }
 
   return (
-    <Layout title="Codurile dumneavoastră">
-      <WhiteBox p="8">
-        <Center width="100%" height="100%" flexDirection="column">
-          <Heading
-            size="lg"
-            as="h1"
-            lineHeight="60px"
-            fontWeight="black"
-            textAlign="center">
-            <Trans id="start" />
+    <Layout title='Codurile dumneavoastră'>
+      <WhiteBox p='8'>
+        <Center width='100%' height='100%' flexDirection='column'>
+          <Heading size='lg' as='h1' lineHeight='60px' fontWeight='black' textAlign='center'>
+            <Trans id='start' />
           </Heading>
-          <Box
-            mt="4"
-            mb="16"
-            d="flex"
-            w="full"
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center">
+          <Box mt='4' mb='16' d='flex' w='full' flexDirection='column' alignItems='center' justifyContent='center'>
             <form
               onSubmit={(e) => {
                 e.preventDefault()
@@ -162,25 +135,19 @@ function Start() {
                 }, 2000)
               }}>
               <Input
-                variant="flushed"
-                textAlign="center"
-                width="600px"
+                variant='flushed'
+                textAlign='center'
+                width='600px'
                 autoFocus={true}
                 value={qrCode}
                 onChange={(e) => setQrCode(e.target.value)}
                 disabled={disabled}
                 ref={inputRef}
               />
-              <Divider color="transparent" />
+              <Divider color='transparent' />
               {disabled && (
-                <Center width="full" height="60px">
-                  <Spinner
-                    thickness="2px"
-                    speed="0.65s"
-                    emptyColor="gray.200"
-                    color="brand.500"
-                    size="md"
-                  />
+                <Center width='full' height='60px'>
+                  <Spinner thickness='2px' speed='0.65s' emptyColor='gray.200' color='brand.500' size='md' />
                 </Center>
               )}
             </form>
