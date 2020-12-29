@@ -43,6 +43,18 @@ function Start() {
   }
   async function preview(code) {
     let doc = new Document()
+    const verifiedCode = /\b\d{7}\b \b\w{5,20}\b/gm.test(code)
+    if (!verifiedCode) {
+      toast({
+        title: languageContext.dictionary['error'],
+        description: languageContext.dictionary['invalidCode'],
+        status: 'error',
+        isClosable: true,
+        duration: null,
+      })
+      setDisabled(false)
+      return
+    }
     const { declaration } = await getDeclaratie(code)
     if (declaration) {
       const documentDate = new Date(
@@ -76,6 +88,19 @@ function Start() {
   }
   async function getDeclaratie(code) {
     setDisabled(true)
+    const verifiedCode = /\b\d{7}\b \b\w{5,20}\b/gm.test(code)
+    if (!verifiedCode) {
+      toast({
+        title: languageContext.dictionary['error'],
+        description: languageContext.dictionary['invalidCode'],
+        status: 'error',
+        isClosable: true,
+        duration: null,
+      })
+      setDisabled(false)
+      return
+    }
+
     try {
       const request = await fetch(`${api}/declaration-self-print/${code}`, {
         headers: {
@@ -99,7 +124,7 @@ function Start() {
         setDisabled(false)
         toast({
           title: languageContext.dictionary['error'],
-          descripaddingTopion: message,
+          description: message,
           status: 'error',
           isClosable: true,
           duration: null,
@@ -110,7 +135,7 @@ function Start() {
       setDisabled(false)
       toast({
         title: languageContext.dictionary['error'],
-        descripaddingTopion: err.message,
+        description: err.message,
         status: 'error',
         isClosable: true,
         duration: null,

@@ -1,6 +1,7 @@
 const ro = {
   footer:
     'Platformă gestionată de Serviciul de Telecomunicații Speciale, dezvoltată de Citizen Next cu sprijin din partea Unicredit Bank',
+  invalidCode: 'cod QR invalid',
   title: 'Declarație Online Coronavirus COVID-19',
   ro: 'Română',
   en: 'English',

@@ -1,5 +1,6 @@
 const en = {
   footer: 'Platform managed by Special Telecommunication Service, developed by Citizen Next with support from Unicredit Bank',
+  invalidCode: 'invalid QR code',
   title: 'Online Coronavirus COVID-19 Statement',
   ro: 'Romanian',
   en: 'English',
